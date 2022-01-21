@@ -1,5 +1,6 @@
 import java.net.*;
 import java.io.*;
+import java.sql.SQLException;
 
 public class Server extends Thread {
 
@@ -12,7 +13,7 @@ public class Server extends Thread {
                 Socket socket = serverSocket.accept();
                 new ServerThread(socket).start();
             }
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
     }

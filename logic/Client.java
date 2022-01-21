@@ -1,15 +1,16 @@
 import java.io.*;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Client {
 
     private static final int PORT = 2605;
     private static final String HOST = "127.0.0.1";
-    //private static int ID;
+    private static int ID;
 
     public Client(int id) {
-    //    ID = id;
+        ID = id;
     }
 
     public void startConnection() {
@@ -24,11 +25,14 @@ public class Client {
 
             while (!text.equals("exit")) {
                 text = scanner.nextLine();
-                printWriter.println(text);
+                printWriter.println(ID);
                 InputStream inputStream = socket.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String receivedText = bufferedReader.readLine();
-                System.out.println("CLIENT:" + receivedText);
+
+                System.out.println("CLIENT " + ID + " got a msg:");
+                Arrays.stream(bufferedReader.readLine().split(";"))
+                        .toList()
+                        .forEach(System.out::println);
             }
             socket.close();
         } catch (IOException e) {
