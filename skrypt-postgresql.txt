@@ -1,0 +1,59 @@
+--DROP TABLE insurance_offers
+--DROP TABLE vehicles
+--DROP TABLE users
+
+CREATE TABLE IF NOT EXISTS users(
+	id bigserial PRIMARY KEY NOT NULL,
+	login varchar(255) UNIQUE NOT NULL,
+	email varchar(255) UNIQUE NOT NULL,
+	password text NOT NULL,
+	insert_time timestamp NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS vehicles(
+	id bigserial PRIMARY KEY NOT NULL,
+	login varchar(255) NOT NULL REFERENCES users(login),
+	brand varchar(255) NOT NULL,
+	model varchar(255) NOT NULL,
+	insert_time timestamp NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS insurance_offers(
+	id bigserial PRIMARY KEY NOT NULL,
+	vehicle_id bigint NOT NULL REFERENCES vehicles(id),
+	insurer text NOT NULL,
+	price float NOT NULL,
+	insert_time timestamp NOT NULL DEFAULT now()
+);
+
+INSERT INTO public.users(
+	login, email, password) VALUES
+	('login1', 'email1@op.pl', 'e9519d5e34f858d711c06d755a451248cb3f1dad3885844eaeafbafa92602ce8cfe9e67f62241c2fc6096aca8fb5068960034bdd37d4d0e5efee31209a6ddcfd'),
+	('login2', 'email2@op.pl', 'e9519d5e34f858d711c06d755a451248cb3f1dad3885844eaeafbafa92602ce8cfe9e67f62241c2fc6096aca8fb5068960034bdd37d4d0e5efee31209a6ddcfd'),
+	('login3', 'email3@op.pl', 'e9519d5e34f858d711c06d755a451248cb3f1dad3885844eaeafbafa92602ce8cfe9e67f62241c2fc6096aca8fb5068960034bdd37d4d0e5efee31209a6ddcfd'),
+	('login4', 'email4@op.pl', 'e9519d5e34f858d711c06d755a451248cb3f1dad3885844eaeafbafa92602ce8cfe9e67f62241c2fc6096aca8fb5068960034bdd37d4d0e5efee31209a6ddcfd'),
+	('login5', 'email5@op.pl', 'e9519d5e34f858d711c06d755a451248cb3f1dad3885844eaeafbafa92602ce8cfe9e67f62241c2fc6096aca8fb5068960034bdd37d4d0e5efee31209a6ddcfd');
+
+INSERT INTO public.vehicles(
+	login, brand, model) VALUES
+	('login1', 'VW', 'Golf 3'),
+	('login1', 'BMW', 'E60'),
+	('login2', 'VW', 'Golf 4'),
+	('login2', 'Citroen', 'Golf 5'),
+	('login5', 'VW', 'Golf 6');
+
+INSERT INTO public.insurance_offers(
+	vehicle_id, insurer, price) VALUES 
+	(1, 'OC1', 1111),
+	(3, 'OC1', 3333),
+	(4, 'OC2', 4444),
+	(5, 'OC2', 5555),
+	(1, 'OC3', 5444);
+	
+select * from users
+select * from vehicles
+select * from insurance_offers
+
+select * from users where id = 1
+select * from vehicles where login = 'login1'
+select * from insurance_offers where vehicle_id = 1 or vehicle_id = 2

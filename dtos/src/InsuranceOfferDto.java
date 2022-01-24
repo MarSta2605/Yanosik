@@ -2,26 +2,26 @@ import java.util.Date;
 
 public class InsuranceOfferDto {
 
-    private long ID;
-    private long vehicleID;
+    private long id;
+    private long vehicleId;
     private String insurer;
     private float price;
     private Date insertTime;
 
-    public InsuranceOfferDto(long id, long vehicleID, String insurer, float price, Date insertTime) {
-        this.ID = id;
-        this.vehicleID = vehicleID;
+    public InsuranceOfferDto(long id, long vehicleId, String insurer, float price, Date insertTime) {
+        this.id = id;
+        this.vehicleId = vehicleId;
         this.insurer = insurer;
         this.price = price;
         this.insertTime = insertTime;
     }
 
     public long getID() {
-        return ID;
+        return id;
     }
 
     public long getVehicleID() {
-        return vehicleID;
+        return vehicleId;
     }
 
     public String getInsurer() {

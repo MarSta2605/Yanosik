@@ -1,30 +1,30 @@
 import java.util.Date;
 
 public class UserDto {
-    private long ID;
-    private String nick;
+    private long id;
     private String login;
+    private String email;
     private String password;
     private Date insertTime;
 
-    public UserDto(long id, String nick, String login, String password, Date insertTime) {
-        this.ID = id;
-        this.nick = nick;
+    public UserDto(long id, String login, String email, String password, Date insertTime) {
+        this.id = id;
         this.login = login;
+        this.email = email;
         this.password = password;
         this.insertTime = insertTime;
     }
 
     public long getID() {
-        return ID;
-    }
-
-    public String getNick() {
-        return nick;
+        return id;
     }
 
     public String getLogin() {
         return login;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {

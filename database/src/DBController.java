@@ -23,8 +23,8 @@ public class DBController {
         if (user.next()) {
             return new UserDto(
                     user.getLong("id"),
-                    user.getString("nick"),
                     user.getString("login"),
+                    user.getString("email"),
                     user.getString("password"),
                     user.getDate("insert_time")
             );
@@ -46,7 +46,7 @@ public class DBController {
             vehicleDtoList.add(vehicleDto);
         }
         if (vehicleDtoList.size() > 0) return vehicleDtoList;
-        return null;
+        return new ArrayList<>();
     }
 
     public List<InsuranceOfferDto> getInsurances(long vehicleID) throws SQLException {
@@ -65,15 +65,6 @@ public class DBController {
 
         if (insuranceOfferDtoList.size() > 0) return insuranceOfferDtoList;
         return new ArrayList<>();
-    }
-
-//TODO hmm
-    public Boolean verifyUser(String login, String password) throws SQLException {
-        ResultSet user = request("select * from users where login = '" + login + "'");
-        if (user.next()) {
-            return password.equals(user.getString("password"));
-        }
-        return false;
     }
 
 }

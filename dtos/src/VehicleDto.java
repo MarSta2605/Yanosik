@@ -2,14 +2,14 @@ import java.util.Date;
 
 public class VehicleDto {
 
-    private long ID;
+    private long id;
     private String login;
     private String brand;
     private String model;
     private Date insertTime;
 
     public VehicleDto(long id, String login, String brand, String model, Date insertTime) {
-        this.ID = id;
+        this.id = id;
         this.login = login;
         this.brand = brand;
         this.model = model;
@@ -17,7 +17,7 @@ public class VehicleDto {
     }
 
     public long getID() {
-        return ID;
+        return id;
     }
 
     public String getLogin() {
